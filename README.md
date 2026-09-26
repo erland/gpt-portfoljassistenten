@@ -1,0 +1,2 @@
+# gpt-portfoljassistenten
+GPT Portföljassistentrn
