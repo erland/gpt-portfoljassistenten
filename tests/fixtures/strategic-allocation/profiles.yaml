@@ -1,0 +1,30 @@
+profiles:
+  - id: cautious
+    equity_range_pct: [20, 40]
+    default_target:
+      equity: 30
+      rates: 60
+      credit: 10
+  - id: balanced
+    equity_range_pct: [45, 65]
+    default_target:
+      equity: 60
+      rates: 30
+      credit: 10
+  - id: high
+    equity_range_pct: [70, 90]
+    default_target:
+      equity: 80
+      rates: 10
+      credit: 10
+  - id: very_high
+    equity_range_pct: [90, 100]
+    default_target:
+      equity: 100
+      rates: 0
+      credit: 0
+horizon_bands:
+  short: {min_years: 0, max_years_exclusive: 3}
+  medium: {min_years: 3, max_years_exclusive: 7}
+  long: {min_years: 7, max_years_exclusive: 15}
+  very_long: {min_years: 15, max_years_exclusive: null}

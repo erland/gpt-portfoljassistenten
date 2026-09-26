@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Custom GPT Compilation Configuration",
+  "type": "object",
+  "required": [
+    "enabled",
+    "role",
+    "instruction",
+    "knowledge",
+    "builder",
+    "compatibility"
+  ],
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "role": {
+      "enum": [
+        "primary",
+        "secondary",
+        "peer_distribution"
+      ]
+    },
+    "instruction": {
+      "type": "object",
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "identical",
+            "compressed",
+            "compiled"
+          ]
+        },
+        "max_characters": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "required": [
+        "strategy",
+        "max_files"
+      ],
+      "properties": {
+        "strategy": {
+          "enum": [
+            "identical",
+            "consolidate",
+            "prioritize",
+            "hybrid"
+          ]
+        },
+        "max_files": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "builder": {
+      "type": "object",
+      "required": [
+        "instructions",
+        "conversation_starters",
+        "capabilities",
+        "knowledge_package",
+        "runtime_contract"
+      ],
+      "properties": {
+        "instructions": {
+          "type": "string"
+        },
+        "conversation_starters": {
+          "type": "string"
+        },
+        "capabilities": {
+          "type": "string"
+        },
+        "knowledge_package": {
+          "type": "string"
+        },
+        "runtime_contract": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "required": [
+        "report_required",
+        "parity_symbols"
+      ],
+      "properties": {
+        "report_required": {
+          "type": "boolean"
+        },
+        "parity_symbols": {
+          "type": "object",
+          "properties": {
+            "equivalent": {
+              "type": "string"
+            },
+            "reduced": {
+              "type": "string"
+            },
+            "missing": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "block_on_instruction_limit": {
+          "type": "boolean"
+        },
+        "block_on_knowledge_limit": {
+          "type": "boolean"
+        },
+        "block_on_misleading_core_functionality": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

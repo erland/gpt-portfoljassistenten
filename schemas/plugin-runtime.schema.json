@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenAI Plugin Runtime Configuration",
+  "type": "object",
+  "required": [
+    "enabled",
+    "role",
+    "mode",
+    "layout",
+    "validation"
+  ],
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "role": {
+      "enum": [
+        "primary",
+        "secondary",
+        "peer_distribution"
+      ]
+    },
+    "mode": {
+      "const": "openai_plugin"
+    },
+    "layout": {
+      "type": "object",
+      "required": [
+        "manifest_file",
+        "skills",
+        "references",
+        "assets",
+        "scripts"
+      ],
+      "properties": {
+        "manifest_file": {
+          "const": "plugin.json"
+        },
+        "skills": {
+          "const": "skills"
+        },
+        "references": {
+          "const": "references"
+        },
+        "assets": {
+          "const": "assets"
+        },
+        "scripts": {
+          "const": "scripts"
+        }
+      },
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "require_manifest",
+        "require_skill",
+        "require_skill_frontmatter"
+      ],
+      "properties": {
+        "require_manifest": {
+          "type": "boolean"
+        },
+        "require_skill": {
+          "type": "boolean"
+        },
+        "require_skill_frontmatter": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

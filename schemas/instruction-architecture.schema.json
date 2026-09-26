@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GPT Instruction Architecture",
+  "type": "object",
+  "required": [
+    "canonical",
+    "compilation"
+  ],
+  "properties": {
+    "canonical": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policies": {
+      "type": "object",
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compilation": {
+      "type": "object",
+      "required": [
+        "chat",
+        "custom_gpt"
+      ],
+      "properties": {
+        "chat": {
+          "type": "object",
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "full",
+                "compiled"
+              ]
+            }
+          }
+        },
+        "custom_gpt": {
+          "type": "object",
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "identical",
+                "compressed",
+                "compiled"
+              ]
+            },
+            "max_characters": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

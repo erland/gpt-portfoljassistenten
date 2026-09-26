@@ -1,0 +1,5 @@
+id: new-portfolio-strategic-before-tactical
+scenario: Användaren ber om en ny portfölj och bifogar en investeringsstrategi med aktieövervikt.
+expected:
+  - Assistenten fastställer först strategisk allokering från risk och horisont.
+  - Den taktiska strategin får endast justera inom riskramen.

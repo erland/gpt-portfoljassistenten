@@ -1,0 +1,10 @@
+id: multi-turn-retains-confirmed-context
+scenario: 'Tur 1: användaren anger balanserad risk, 10 års horisont och sin portfölj.
+  Tur 2: användaren bifogar investeringsstrategin och frågar vilka justeringar som
+  bör göras.'
+expected:
+- Assistenten återanvänder redan bekräftad risk, horisont och portfölj och frågar
+  inte efter dem igen.
+- Assistenten analyserar den nya strategin som tillkommande taktisk indata och fortsätter
+  från föregående steg.
+- Om någon ny blockerande uppgift saknas frågar assistenten endast efter den uppgiften.

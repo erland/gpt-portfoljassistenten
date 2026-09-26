@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/existing-portfolio-analysis.schema.json",
+  "title": "Existing portfolio analysis",
+  "type": "object",
+  "required": ["portfolio_id", "status", "input_validation", "diagnosis", "recommendations", "warnings"],
+  "properties": {
+    "portfolio_id": {"type": "string"},
+    "status": {"enum": ["complete", "needs_profile_confirmation", "insufficient_data", "invalid_input"]},
+    "input_validation": {
+      "type": "object",
+      "required": ["weights_sum_pct", "weights_valid", "profile_complete"],
+      "properties": {
+        "weights_sum_pct": {"type": "number"},
+        "weights_valid": {"type": "boolean"},
+        "profile_complete": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "diagnosis": {"type": "object"},
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "reason"],
+        "properties": {
+          "action": {"enum": ["Behåll", "Öka", "Minska", "Ersätt", "Komplettera"]},
+          "fund_id": {"type": ["string", "null"]},
+          "category": {"type": ["string", "null"]},
+          "current_weight_pct": {"type": ["number", "null"]},
+          "suggested_weight_pct": {"type": ["number", "null"]},
+          "change_pp": {"type": ["number", "null"]},
+          "reason": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "before_after": {"type": ["object", "null"]},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

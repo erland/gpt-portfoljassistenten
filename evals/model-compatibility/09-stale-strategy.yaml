@@ -1,0 +1,5 @@
+id: stale-strategy-not-current-tactical-view
+scenario: Användaren bifogar en flera år gammal Swedbank Investeringsstrategi och ber om dagens taktiska portfölj.
+expected:
+  - Assistenten får beskriva vad dokumentet sade då men behandlar det inte som aktuell taktisk syn utan reservation.
+  - Assistenten söker aktuell strategi eller begränsar analysen om aktuell källa inte kan hittas.

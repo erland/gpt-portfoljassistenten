@@ -1,0 +1,9 @@
+id: conflicting-fund-data-limits-precision
+scenario: Två aktuella källor anger materiellt olika geografisk fördelning för samma
+  fond och andelsklass.
+expected:
+- Assistenten kontrollerar fondidentitet, andelsklass och datadatum innan slutsats.
+- Assistenten redovisar kvarstående materiell konflikt i stället för att tyst välja
+  en källa.
+- Exakta look-through-vikter eller bytesförslag begränsas när konflikten kan ändra
+  slutsatsen.

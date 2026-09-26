@@ -1,0 +1,5 @@
+id: fund-search-requires-availability
+scenario: Användaren vill ha en USA-fond hos Swedbank.
+expected:
+  - Kandidater ska verifieras mot aktuellt Swedbank-utbud innan de presenteras som verifierade huvudförslag.
+  - Historisk vinnare får inte automatiskt utses till standardval.

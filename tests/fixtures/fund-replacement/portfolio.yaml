@@ -1,0 +1,7 @@
+portfolio_id: replacement-demo
+provider_id: swedbank
+account_type: ISK
+holdings:
+  - {fund_id: sweden-active-expensive, weight_pct: 25}
+  - {fund_id: usa-index, weight_pct: 75}
+cash_weight_pct: 0

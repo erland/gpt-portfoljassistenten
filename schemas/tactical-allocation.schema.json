@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/tactical-allocation.schema.json",
+  "title": "Tactical allocation result",
+  "type": "object",
+  "required": ["strategic_weights", "tactical_weights", "adjustments", "constraints"],
+  "properties": {
+    "strategic_weights": {"$ref": "strategic-allocation.schema.json"},
+    "tactical_weights": {
+      "type": "object",
+      "required": ["equity", "rates", "credit"],
+      "properties": {
+        "equity": {"type": "number", "minimum": 0, "maximum": 100},
+        "rates": {"type": "number", "minimum": 0, "maximum": 100},
+        "credit": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "adjustments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "signal", "requested_delta_pp", "applied_delta_pp"],
+        "properties": {
+          "path": {"type": "string"},
+          "signal": {"enum": ["strong_overweight", "overweight", "neutral", "underweight", "strong_underweight"]},
+          "requested_delta_pp": {"type": "number"},
+          "applied_delta_pp": {"type": "number"},
+          "funded_by": {"type": ["string", "null"]},
+          "clipped": {"type": "boolean"},
+          "reason": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["equity_min", "equity_max", "max_main_asset_delta_pp", "max_child_delta_pp"],
+      "properties": {
+        "equity_min": {"type": "number", "minimum": 0, "maximum": 100},
+        "equity_max": {"type": "number", "minimum": 0, "maximum": 100},
+        "max_main_asset_delta_pp": {"type": "number", "minimum": 0},
+        "max_child_delta_pp": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "regions_within_equity": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}},
+    "rates_within_rates": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}},
+    "credit_within_credit": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

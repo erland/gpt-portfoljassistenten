@@ -1,0 +1,4 @@
+portfolio_id: skewed
+holdings:
+  - {fund_id: equity-pure, weight_pct: 80}
+  - {fund_id: bond-pure, weight_pct: 20}

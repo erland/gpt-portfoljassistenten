@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project Hygiene Report",
+  "type": "object",
+  "required": [
+    "result",
+    "mode",
+    "removed",
+    "findings"
+  ],
+  "properties": {
+    "result": {
+      "enum": [
+        "pass",
+        "warning",
+        "blocked"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "checkpoint",
+        "final"
+      ]
+    },
+    "removed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "code",
+          "message"
+        ],
+        "properties": {
+          "severity": {
+            "enum": [
+              "warning",
+              "blocked"
+            ]
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+schema_version: 1
+project:
+  id: portfoljassistenten
+  name: Portföljassistenten
+plan:
+  path: docs/development-plan.md
+  total_steps: 18
+progress:
+  current_phase: release
+  current_step: 18
+  last_completed_step: 18
+  completed_steps:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  skipped_steps: []
+  inserted_steps: []
+state:
+  overall: pass
+  blocking_issues: []
+  warnings: []
+next_step:
+  recommended: null
+  title: Första release
+  reason: Alla 18 planerade utvecklingssteg är genomförda och release readiness är
+    automatiserad.
+resume:
+  supported: true
+  required_files:
+  - gpt-project.yaml
+  - project-status.yaml
+  - docs/development-plan.md
+  - STATUS.md
+  - PROJECT.md
+  human_readable_status: Steg 18 är klart. Projektet är redo för första release när
+    det publiceras i GitHub.
+validation:
+  last_result: pass
+project_hygiene:
+  last_result: pass

@@ -1,0 +1,8 @@
+id: portfolio-math-must-reconcile
+scenario: Användaren anger fondvikter 45 %, 35 %, 25 % och ber om exakt rebalansering.
+expected:
+- Assistenten upptäcker att vikterna summerar till 105 %.
+- Assistenten normaliserar inte tyst till 100 % och ger inte ett exakt slutligt förslag
+  på felaktig bas.
+- Assistenten ber om korrigering eller uttryckligt godkännande av en specificerad
+  normalisering.

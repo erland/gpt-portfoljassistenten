@@ -1,0 +1,47 @@
+funds:
+  - fund_id: global-equity-demo
+    name: Global Equity Demo
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation:
+          - {key: usa, weight_pct: 65}
+          - {key: europe_ex_sweden, weight_pct: 15}
+          - {key: sweden, weight_pct: 2}
+          - {key: japan, weight_pct: 6}
+          - {key: emerging_markets, weight_pct: 10}
+          - {key: other, weight_pct: 2}
+  - fund_id: usa-equity-demo
+    name: USA Equity Demo
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: usa, weight_pct: 100}]
+  - fund_id: sweden-equity-demo
+    name: Sweden Equity Demo
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 100}]
+  - fund_id: mixed-demo
+    name: Mixed Demo
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: partial
+        coverage_pct: 92
+        asset_allocation:
+          - {key: equity, weight_pct: 55}
+          - {key: government_bonds, weight_pct: 20}
+          - {key: investment_grade_credit, weight_pct: 12}
+          - {key: cash, weight_pct: 5}
+        geographic_allocation:
+          - {key: usa, weight_pct: 32}
+          - {key: europe_ex_sweden, weight_pct: 15}
+          - {key: sweden, weight_pct: 5}
+          - {key: japan, weight_pct: 3}

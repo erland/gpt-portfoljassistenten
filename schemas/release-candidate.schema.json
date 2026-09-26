@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "version",
+    "result",
+    "gates",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "result": {
+      "enum": [
+        "pass",
+        "blocked"
+      ]
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "pass",
+          "blocked"
+        ]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "file",
+          "sha256"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

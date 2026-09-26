@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GPT Builder E2E Scenario",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "idea",
+    "features",
+    "expected"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "idea": {
+      "type": "string",
+      "minLength": 10
+    },
+    "features": {
+      "type": "object"
+    },
+    "expected": {
+      "type": "object",
+      "required": [
+        "profile",
+        "project_id",
+        "runtime_strategy",
+        "default_runtime_ids",
+        "non_default_runtime_ids",
+        "artifacts"
+      ],
+      "properties": {
+        "profile": {
+          "enum": [
+            "simple",
+            "standard",
+            "zip_first_advanced",
+            "workflow_research_heavy"
+          ]
+        },
+        "project_id": {
+          "type": "string"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "runtime_strategy": {
+          "const": "peer_candidates"
+        },
+        "default_runtime_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "non_default_runtime_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+cases:
+  - id: balanced-neutral
+    profile_complete: true
+    risk_profile: balanced
+    horizon_years: 12
+    top_level_assets: {equity: 60, rates: 30, credit: 10}
+    equity_regions: {sweden: 10, europe: 20, usa: 50, japan: 10, emerging_markets: 10}
+    rates_segments: {money_market_short: 50, bonds_long: 50}
+    credit_segments: {investment_grade: 70, high_yield: 30}
+  - id: high-active
+    profile_complete: true
+    risk_profile: high
+    horizon_years: 18
+    top_level_assets: {equity: 85, rates: 5, credit: 10}
+    equity_regions: {sweden: 8, europe: 17, usa: 55, japan: 8, emerging_markets: 12}
+    rates_segments: {money_market_short: 100, bonds_long: 0}
+    credit_segments: {investment_grade: 40, high_yield: 60}

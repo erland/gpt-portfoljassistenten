@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/fund-replacement-result.schema.json",
+  "title": "FundReplacementResult",
+  "type": "object",
+  "required": ["status", "original_fund", "functional_analysis", "candidates", "warnings"],
+  "properties": {
+    "status": {"enum": ["complete", "no_verified_candidate", "no_direct_equivalent", "missing_portfolio_holding"]},
+    "original_fund": {
+      "type": "object",
+      "required": ["fund_id", "name", "weight_pct"],
+      "properties": {
+        "fund_id": {"type": "string"},
+        "name": {"type": "string"},
+        "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "functional_analysis": {
+      "type": "object",
+      "required": ["role", "direct_replacement_supported", "description"],
+      "properties": {
+        "role": {"type": ["string", "null"]},
+        "direct_replacement_supported": {"type": "boolean"},
+        "description": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "primary_candidate_fund_id": {"type": ["string", "null"]},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rank", "fund_id", "name", "availability_status", "functional_match_pct", "fee_pct", "risk_score", "portfolio_drift_pp", "comparison_reason"],
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1},
+          "fund_id": {"type": "string"},
+          "name": {"type": "string"},
+          "availability_status": {"enum": ["verified", "unverified", "unknown", "not_available"]},
+          "functional_match_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "fee_pct": {"type": ["number", "null"], "minimum": 0},
+          "risk_score": {"type": ["number", "null"]},
+          "portfolio_drift_pp": {"type": "number", "minimum": 0},
+          "asset_max_delta_pp": {"type": "number", "minimum": 0},
+          "geography_max_delta_pp": {"type": "number", "minimum": 0},
+          "comparison_reason": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "before_after": {"type": ["object", "null"]},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

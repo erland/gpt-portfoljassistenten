@@ -1,0 +1,28 @@
+funds:
+  - fund_id: equity-pure
+    exposures:
+      - as_of_date: "2026-09-01"
+        coverage_pct: 100
+        asset_allocation:
+          - {key: equity, weight_pct: 100}
+        geographic_allocation:
+          - {key: usa, weight_pct: 60}
+          - {key: europe, weight_pct: 25}
+          - {key: japan, weight_pct: 7}
+          - {key: emerging_markets, weight_pct: 8}
+  - fund_id: bond-pure
+    exposures:
+      - as_of_date: "2026-09-01"
+        coverage_pct: 100
+        asset_allocation:
+          - {key: government_bonds, weight_pct: 100}
+  - fund_id: mixed-partial
+    exposures:
+      - as_of_date: "2026-09-01"
+        coverage_pct: 90
+        asset_allocation:
+          - {key: equity, weight_pct: 60}
+          - {key: government_bonds, weight_pct: 30}
+        geographic_allocation:
+          - {key: usa, weight_pct: 30}
+          - {key: europe, weight_pct: 20}

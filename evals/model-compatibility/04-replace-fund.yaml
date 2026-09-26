@@ -1,0 +1,5 @@
+id: replacement-preserves-function
+scenario: Användaren vill byta ut en dyr globalfond.
+expected:
+  - Assistenten analyserar fondens portföljfunktion och faktiska exponering före kandidatval.
+  - Portföljpåverkan efter bytet ska förklaras.

@@ -1,0 +1,31 @@
+strategy_id: synthetic-active-regions
+provider_id: swedbank
+strategy_date: 2026-09-01
+signals:
+  - dimension: equity_region
+    key: usa
+    stance: overweight
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [1]
+  - dimension: equity_region
+    key: europe
+    stance: underweight
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [1]
+  - dimension: equity_region
+    key: sweden
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [1]
+product_suggestions:
+  - category: usa_equity
+    fund_name: Example USA Fund
+    source_pages: [2]
+    role: product_suggestion
+source:
+  document_title: Synthetic strategy
+  publisher: Swedbank
+  document_date: 2026-09-01

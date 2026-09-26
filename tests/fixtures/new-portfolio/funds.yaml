@@ -1,0 +1,78 @@
+funds:
+  - fund_id: swedbank-sweden-lowfee
+    name: Sweden Low Fee Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p1}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: sweden, weight_pct: 100}], source_id: s1}]
+    fees: [{fee_type: ongoing, value_pct: 0.20, as_of_date: '2026-08-31', source_id: s1}]
+    sources: [{source_id: p1, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s1, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-sweden-highfee
+    name: Sweden Higher Fee Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p2}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: sweden, weight_pct: 100}], source_id: s2}]
+    fees: [{fee_type: ongoing, value_pct: 0.70, as_of_date: '2026-08-31', source_id: s2}]
+    sources: [{source_id: p2, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s2, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-usa
+    name: USA Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p3}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: usa, weight_pct: 100}], source_id: s3}]
+    fees: [{fee_type: ongoing, value_pct: 0.25, as_of_date: '2026-08-31', source_id: s3}]
+    sources: [{source_id: p3, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s3, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-europe
+    name: Europe Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p4}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: europe, weight_pct: 100}], source_id: s4}]
+    fees: [{fee_type: ongoing, value_pct: 0.30, as_of_date: '2026-08-31', source_id: s4}]
+    sources: [{source_id: p4, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s4, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-japan
+    name: Japan Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p5}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: japan, weight_pct: 100}], source_id: s5}]
+    fees: [{fee_type: ongoing, value_pct: 0.35, as_of_date: '2026-08-31', source_id: s5}]
+    sources: [{source_id: p5, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s5, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-em
+    name: Emerging Markets Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p6}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: emerging_markets, weight_pct: 100}], source_id: s6}]
+    fees: [{fee_type: ongoing, value_pct: 0.40, as_of_date: '2026-08-31', source_id: s6}]
+    sources: [{source_id: p6, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s6, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-short-rates
+    name: Short Rates Demo
+    fund_type: fixed_income
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p7}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: direct, coverage_pct: 100, asset_allocation: [{key: money_market_short, weight_pct: 100}], source_id: s7}]
+    fees: [{fee_type: ongoing, value_pct: 0.15, as_of_date: '2026-08-31', source_id: s7}]
+    sources: [{source_id: p7, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s7, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-long-rates
+    name: Long Rates Demo
+    fund_type: fixed_income
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p8}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: direct, coverage_pct: 100, asset_allocation: [{key: bonds_long, weight_pct: 100}], source_id: s8}]
+    fees: [{fee_type: ongoing, value_pct: 0.20, as_of_date: '2026-08-31', source_id: s8}]
+    sources: [{source_id: p8, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s8, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-ig
+    name: Investment Grade Demo
+    fund_type: credit
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p9}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: direct, coverage_pct: 100, asset_allocation: [{key: investment_grade_credit, weight_pct: 100}], source_id: s9}]
+    fees: [{fee_type: ongoing, value_pct: 0.30, as_of_date: '2026-08-31', source_id: s9}]
+    sources: [{source_id: p9, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s9, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: swedbank-hy
+    name: High Yield Demo
+    fund_type: credit
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: verified, verified_at: '2026-09-26T12:00:00+02:00', source_id: p10}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: direct, coverage_pct: 100, asset_allocation: [{key: high_yield_credit, weight_pct: 100}], source_id: s10}]
+    fees: [{fee_type: ongoing, value_pct: 0.45, as_of_date: '2026-08-31', source_id: s10}]
+    sources: [{source_id: p10, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s10, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]
+  - fund_id: unverified-usa
+    name: USA Unverified Demo
+    fund_type: equity
+    platform_availability: [{provider_id: swedbank, platform_id: swedbank_fund_platform, account_types: [ISK], availability_status: unverified, verified_at: null, source_id: p11}]
+    exposures: [{as_of_date: '2026-08-31', look_through_level: full, coverage_pct: 100, asset_allocation: [{key: equity, weight_pct: 100}], geographic_allocation: [{key: usa, weight_pct: 100}], source_id: s11}]
+    fees: [{fee_type: ongoing, value_pct: 0.10, as_of_date: '2026-08-31', source_id: s11}]
+    sources: [{source_id: p11, publisher: Swedbank Demo, source_type: platform, retrieved_at: '2026-09-26T12:00:00+02:00'}, {source_id: s11, publisher: Fund Co, source_type: factsheet, retrieved_at: '2026-09-26T12:00:00+02:00'}]

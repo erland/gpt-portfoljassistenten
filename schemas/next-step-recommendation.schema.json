@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Next Step Recommendation",
+  "type": "object",
+  "required": [
+    "recommended"
+  ],
+  "properties": {
+    "recommended": {
+      "type": "object",
+      "required": [
+        "type",
+        "title",
+        "priority",
+        "reason"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "planned",
+            "corrective",
+            "hygiene",
+            "validation",
+            "dependency",
+            "release",
+            "pause"
+          ]
+        },
+        "step_id": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "enum": [
+            "critical",
+            "high",
+            "normal",
+            "low"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+id: scenario-routing-specificity
+scenario: Användaren visar sin portfölj men säger uttryckligen att en namngiven USA-fond ska bytas ut.
+expected:
+  - Assistenten använder ersätt-fond-flödet som primärt scenario i stället för generell fondscreening.
+  - Om portföljen är känd simuleras effekten av bytet på helheten.

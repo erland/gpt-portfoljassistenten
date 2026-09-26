@@ -1,0 +1,141 @@
+funds:
+  - fund_id: sverige-index
+    name: Sverige Indexnära Demo
+    fund_type: equity
+    management_style: index
+    benchmark: OMX Sweden Broad Demo
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: verified
+        verified_at: '2026-09-25T10:00:00Z'
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 100}]
+    risk: {score: 4, scale_min: 1, scale_max: 7, method: SRI, as_of_date: '2026-08-31'}
+    fees: [{fee_type: ongoing, value_pct: 0.20, as_of_date: '2026-08-31'}]
+    performance:
+      - {period: 3y, return_pct: 31, annualized: false, as_of_date: '2026-08-31'}
+      - {period: 5y, return_pct: 61, annualized: false, as_of_date: '2026-08-31'}
+    sources: [{source_id: s1, publisher: Demo, source_type: platform, retrieved_at: '2026-09-25T10:00:00Z'}]
+  - fund_id: sverige-active
+    name: Sverige Aktiv Demo
+    fund_type: equity
+    management_style: active
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: verified
+        verified_at: '2026-09-25T10:00:00Z'
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 100}]
+    risk: {score: 4, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 1.15}]
+    performance:
+      - {period: 3y, return_pct: 44, annualized: false, as_of_date: '2026-08-31'}
+      - {period: 5y, return_pct: 74, annualized: false, as_of_date: '2026-08-31'}
+    sources: [{source_id: s2, publisher: Demo, source_type: fund_company, retrieved_at: '2026-09-25T10:00:00Z'}]
+  - fund_id: usa-index
+    name: USA Index Demo
+    fund_type: equity
+    management_style: index
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: verified
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: usa, weight_pct: 100}]
+    risk: {score: 4, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.25}]
+    performance: [{period: 5y, return_pct: 92, annualized: false, as_of_date: '2026-08-31'}]
+    sources: [{source_id: s3, publisher: Demo, source_type: platform, retrieved_at: '2026-09-25T10:00:00Z'}]
+  - fund_id: usa-high-return-unverified
+    name: USA Hög Historik Demo
+    fund_type: equity
+    management_style: active
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: unverified
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: usa, weight_pct: 100}]
+    risk: {score: 5, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 1.60}]
+    performance: [{period: 5y, return_pct: 160, annualized: false, as_of_date: '2026-08-31'}]
+    sources: [{source_id: s4, publisher: Demo, source_type: third_party, retrieved_at: '2026-09-25T10:00:00Z'}]
+  - fund_id: short-rate
+    name: Kort Ränta Demo
+    fund_type: fixed_income
+    management_style: active
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: verified
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: money_market_short, weight_pct: 98}, {key: cash, weight_pct: 2}]
+        geographic_allocation: []
+    risk: {score: 1, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.15}]
+    performance: [{period: 3y, return_pct: 10, annualized: false, as_of_date: '2026-08-31'}]
+    sources: [{source_id: s5, publisher: Demo, source_type: platform, retrieved_at: '2026-09-25T10:00:00Z'}]
+  - fund_id: long-bond
+    name: Lång Obligation Demo
+    fund_type: fixed_income
+    management_style: active
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: verified
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: bonds_long, weight_pct: 96}, {key: cash, weight_pct: 4}]
+        geographic_allocation: []
+    risk: {score: 2, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.30}]
+    performance: [{period: 3y, return_pct: 4, annualized: false, as_of_date: '2026-08-31'}]
+    sources: [{source_id: s6, publisher: Demo, source_type: platform, retrieved_at: '2026-09-25T10:00:00Z'}]
+  - fund_id: high-yield
+    name: High Yield Demo
+    fund_type: credit
+    management_style: active
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: fundlist
+        account_types: [ISK]
+        availability_status: verified
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: high_yield_credit, weight_pct: 95}, {key: cash, weight_pct: 5}]
+        geographic_allocation: []
+    risk: {score: 3, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.70}]
+    performance: [{period: 3y, return_pct: 20, annualized: false, as_of_date: '2026-08-31'}]
+    sources: [{source_id: s7, publisher: Demo, source_type: platform, retrieved_at: '2026-09-25T10:00:00Z'}]

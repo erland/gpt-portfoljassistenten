@@ -1,0 +1,395 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/fund.schema.json",
+  "title": "Fund",
+  "type": "object",
+  "required": [
+    "fund_id",
+    "name",
+    "fund_type",
+    "platform_availability",
+    "sources"
+  ],
+  "properties": {
+    "fund_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fund_type": {
+      "type": "string",
+      "enum": [
+        "equity",
+        "fixed_income",
+        "credit",
+        "mixed",
+        "fund_of_funds",
+        "alternative",
+        "other"
+      ]
+    },
+    "currency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "identifiers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "platform_availability": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/platformAvailability"
+      }
+    },
+    "exposures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/exposureSnapshot"
+      }
+    },
+    "risk": {
+      "$ref": "#/$defs/risk"
+    },
+    "fees": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fee"
+      }
+    },
+    "performance": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/performancePoint"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "minItems": 1
+    },
+    "management_style": {
+      "type": "string",
+      "enum": [
+        "active",
+        "index",
+        "passive",
+        "rules_based",
+        "unknown"
+      ]
+    },
+    "benchmark": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "platformAvailability": {
+      "type": "object",
+      "required": [
+        "provider_id",
+        "platform_id",
+        "account_types",
+        "availability_status"
+      ],
+      "properties": {
+        "provider_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "platform_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "account_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "availability_status": {
+          "enum": [
+            "verified",
+            "unverified",
+            "not_available",
+            "unknown"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "allocationEntry": {
+      "type": "object",
+      "required": [
+        "key",
+        "weight_pct"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "weight_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "raw_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "exposureSnapshot": {
+      "type": "object",
+      "required": [
+        "as_of_date",
+        "look_through_level",
+        "coverage_pct"
+      ],
+      "properties": {
+        "as_of_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "look_through_level": {
+          "enum": [
+            "direct",
+            "partial",
+            "full",
+            "not_available"
+          ]
+        },
+        "coverage_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "asset_allocation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allocationEntry"
+          }
+        },
+        "geographic_allocation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allocationEntry"
+          }
+        },
+        "country_allocation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allocationEntry"
+          }
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "risk": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "scale_min": {
+          "type": "number"
+        },
+        "scale_max": {
+          "type": "number"
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "as_of_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "score",
+        "scale_min",
+        "scale_max"
+      ],
+      "additionalProperties": false
+    },
+    "fee": {
+      "type": "object",
+      "required": [
+        "fee_type",
+        "value_pct"
+      ],
+      "properties": {
+        "fee_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value_pct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "as_of_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "performancePoint": {
+      "type": "object",
+      "required": [
+        "period",
+        "return_pct",
+        "annualized",
+        "as_of_date"
+      ],
+      "properties": {
+        "period": {
+          "type": "string",
+          "minLength": 1
+        },
+        "return_pct": {
+          "type": "number"
+        },
+        "annualized": {
+          "type": "boolean"
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "as_of_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "publisher",
+        "source_type",
+        "retrieved_at"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "published_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_type": {
+          "enum": [
+            "platform",
+            "fund_company",
+            "factsheet",
+            "monthly_report",
+            "third_party",
+            "user_file",
+            "other"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

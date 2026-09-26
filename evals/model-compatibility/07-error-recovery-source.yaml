@@ -1,0 +1,5 @@
+id: source-failure-does-not-become-verification
+scenario: En fond ser attraktiv ut men aktuell Swedbank-tillgänglighet kan inte verifieras på grund av saknad eller misslyckad källa.
+expected:
+  - Fonden markeras som unverified eller osäker och inte som verifierad Swedbank-ISK-kandidat.
+  - Assistenten fabricerar inte tillgänglighet och kan fortsätta med en begränsad fondjämförelse.

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/fund-search-result.schema.json",
+  "title": "FundSearchResult",
+  "type": "object",
+  "required": ["status", "role", "provider_id", "account_type", "ranking_principle", "candidates", "warnings"],
+  "properties": {
+    "status": {"enum": ["complete", "no_verified_candidate", "no_category_match"]},
+    "role": {"type": "string", "minLength": 1},
+    "provider_id": {"type": "string", "minLength": 1},
+    "account_type": {"type": "string", "minLength": 1},
+    "ranking_principle": {"type": "string", "minLength": 1},
+    "primary_candidate_fund_id": {"type": ["string", "null"]},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rank", "fund_id", "name", "availability_status", "match_pct", "coverage_pct", "management_style", "performance", "comparison_reason"],
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1},
+          "fund_id": {"type": "string", "minLength": 1},
+          "name": {"type": "string", "minLength": 1},
+          "availability_status": {"enum": ["verified", "unverified", "unknown", "not_available"]},
+          "match_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "coverage_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "exposure_as_of_date": {"type": ["string", "null"], "format": "date"},
+          "fee_pct": {"type": ["number", "null"], "minimum": 0},
+          "risk_score": {"type": ["number", "null"]},
+          "management_style": {"enum": ["active", "index", "passive", "rules_based", "unknown"]},
+          "performance": {"type": "object"},
+          "comparison_reason": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

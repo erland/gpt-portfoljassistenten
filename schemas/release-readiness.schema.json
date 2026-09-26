@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "result",
+    "gates",
+    "distributions",
+    "warnings",
+    "blockers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "result": {
+      "enum": [
+        "ready",
+        "ready_with_warnings",
+        "blocked"
+      ]
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "pass",
+              "warning",
+              "blocked",
+              "not_run",
+              "not_applicable"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "distributions": {
+      "type": "object",
+      "required": [
+        "project_zip"
+      ],
+      "additionalProperties": {
+        "enum": [
+          "ready",
+          "ready_with_warnings",
+          "blocked",
+          "not_applicable"
+        ]
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
