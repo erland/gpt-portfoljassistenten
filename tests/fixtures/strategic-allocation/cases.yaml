@@ -1,0 +1,34 @@
+cases:
+  - id: balanced-long-confirmed
+    input:
+      risk_profile: balanced
+      horizon: {years: 10, band: long}
+      liquidity_need: none_known
+      confirmation_status: confirmed
+    expected:
+      target: {equity: 60, rates: 30, credit: 10}
+      needs_confirmation: false
+  - id: high-short-mismatch
+    input:
+      risk_profile: high
+      horizon: {years: 2, band: short}
+      liquidity_need: known_near_term
+      confirmation_status: needs_confirmation
+      mismatch_flags: [short_horizon_high_equity, near_term_liquidity]
+    expected:
+      needs_confirmation: true
+  - id: high-long-confirmed
+    input:
+      risk_profile: high
+      horizon: {years: 12, band: long}
+      liquidity_need: none_known
+      confirmation_status: confirmed
+    expected:
+      target: {equity: 80, rates: 10, credit: 10}
+      needs_confirmation: false
+  - id: incomplete-profile
+    input:
+      horizon: {years: 12, band: long}
+    expected:
+      needs_confirmation: true
+      missing: [risk_profile]

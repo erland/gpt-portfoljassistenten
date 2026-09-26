@@ -1,0 +1,55 @@
+cases:
+  - id: september-2026-balanced-main
+    input:
+      strategic: {equity: 60, rates: 30, credit: 10}
+      equity_range: [45, 65]
+      signal: strong_overweight
+      overweight: equity
+      funded_by: rates
+    expected:
+      tactical: {equity: 65, rates: 25, credit: 10}
+      applied_delta_pp: 5
+
+  - id: risk-cap-clips-overweight
+    input:
+      strategic: {equity: 60, rates: 30, credit: 10}
+      equity_range: [45, 63]
+      signal: strong_overweight
+      overweight: equity
+      funded_by: rates
+    expected:
+      tactical: {equity: 63, rates: 27, credit: 10}
+      applied_delta_pp: 3
+
+  - id: neutral-regions
+    input:
+      baseline: {sweden: 5, europe: 15, usa: 60, japan: 6, emerging_markets: 11, other: 3}
+      signals:
+        sweden: neutral
+        europe: neutral
+        usa: neutral
+        japan: neutral
+        emerging_markets: neutral
+        other: neutral
+    expected:
+      unchanged: true
+
+  - id: high-yield-within-neutral-credit
+    input:
+      parent_weight: 10
+      baseline: {investment_grade: 50, high_yield: 50}
+      signal: overweight
+      target: high_yield
+      funded_by: investment_grade
+    expected:
+      parent_weight: 10
+      child: {investment_grade: 47, high_yield: 53}
+
+  - id: short-duration-preference
+    input:
+      baseline: {short_duration: 50, long_duration: 50}
+      signal: strong_overweight
+      target: short_duration
+      funded_by: long_duration
+    expected:
+      child: {short_duration: 55, long_duration: 45}

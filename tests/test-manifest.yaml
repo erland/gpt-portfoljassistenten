@@ -1,0 +1,37 @@
+schema_version: 1
+project: portfoljassistenten
+suites:
+- id: structure
+  description: Grundläggande projektstruktur och canonical contracts.
+- id: model-compatibility
+  description: Guided workflow och kritiska gates över flera turer.
+- id: source-evidence
+  description: Källhierarki, aktualitet, konflikt och verifierad Swedbank-tillgänglighet.
+- id: investment-strategy
+  description: Tolkning av taktiska signaler, neutralvikt och separation av produkt-/affärsförslag.
+- id: strategic-allocation
+  description: Riskdialog, strategiska standardprofiler, horisontkontroll och dynamisk
+    regionbaslinje.
+- id: tactical-adjustment
+  description: Deterministiska taktiska justeringar, riskramar och hierarkiska sleeve-tiltar.
+- id: look-through
+  description: Aggregerad tillgångs- och regionexponering, partial coverage, unknown
+    och överlapp.
+- id: existing-portfolio
+  description: 'Scenario A: input-gates, portföljdiagnos, minsta rimliga förändring
+    och före/efter.'
+- id: new-portfolio
+  description: 'Scenario B: profilgate, verifierade Swedbank-ISK-byggblock, 100 %-vikter
+    och faktisk look-through.'
+- id: fund-search
+  description: 'Scenario C: kategorimatchning, verifierad Swedbank-ISK-tillgänglighet
+    och multidimensionell fondjämförelse.'
+- id: fund-replacement
+  description: 'Scenario D: funktionsanalys, verifierade ersättare, före/efter och
+    portföljdrift.'
+- id: broader-evals
+  description: Multi-turn retention, konfliktdata, otydliga fondnamn, stale strategi,
+    neutralvikt och matematisk kontroll.
+- id: custom-gpt-runtime
+  description: Builder-paketets 8 000-teckensbudget, Knowledge-budget, scenario-/kärnmarkörer
+    och manifestintegritet.

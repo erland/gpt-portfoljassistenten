@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GPT Builder Analysis Recommendation",
+  "type": "object",
+  "required": [
+    "recommended_profile",
+    "runtime",
+    "capabilities",
+    "project_features",
+    "model_robustness"
+  ],
+  "properties": {
+    "recommended_profile": {
+      "enum": [
+        "simple",
+        "standard",
+        "zip_first_advanced",
+        "workflow_research_heavy"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "strategy",
+        "candidates"
+      ],
+      "properties": {
+        "strategy": {
+          "const": "peer_candidates"
+        },
+        "candidates": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "type": "object",
+            "required": [
+              "runtime_id",
+              "suitability",
+              "rationale",
+              "activate_by_default"
+            ],
+            "properties": {
+              "runtime_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "suitability": {
+                "enum": [
+                  "equivalent",
+                  "reduced",
+                  "not_recommended"
+                ]
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "activate_by_default": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "runtime_id": {
+                    "const": "chatgpt_chat"
+                  }
+                },
+                "required": [
+                  "runtime_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "runtime_id": {
+                    "const": "chatgpt_custom"
+                  }
+                },
+                "required": [
+                  "runtime_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "runtime_id": {
+                    "const": "claude_project"
+                  }
+                },
+                "required": [
+                  "runtime_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "runtime_id": {
+                    "const": "opencode"
+                  }
+                },
+                "required": [
+                  "runtime_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "runtime_id": {
+                    "const": "openai_plugin"
+                  }
+                },
+                "required": [
+                  "runtime_id"
+                ]
+              }
+            }
+          ]
+        },
+        "primary": {
+          "type": "string"
+        },
+        "custom_gpt": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "web": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_recommended"
+          ]
+        },
+        "data_analysis": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_recommended"
+          ]
+        },
+        "image_generation": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_recommended"
+          ]
+        },
+        "file_handling": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_recommended"
+          ]
+        }
+      }
+    },
+    "project_features": {
+      "type": "object",
+      "properties": {
+        "structured_knowledge": {
+          "type": "boolean"
+        },
+        "scripts": {
+          "type": "boolean"
+        },
+        "schemas": {
+          "type": "boolean"
+        },
+        "templates": {
+          "type": "boolean"
+        },
+        "deterministic_tests": {
+          "type": "boolean"
+        },
+        "evals": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional",
+            "not_recommended"
+          ]
+        }
+      }
+    },
+    "model_robustness": {
+      "type": "object",
+      "required": [
+        "level",
+        "rationale",
+        "operational_core",
+        "explicit_workflow",
+        "model_compatibility_evals"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "lightweight",
+            "guided",
+            "stateful"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operational_core": {
+          "type": "boolean"
+        },
+        "explicit_workflow": {
+          "type": "boolean"
+        },
+        "deterministic_gates": {
+          "type": "boolean"
+        },
+        "model_compatibility_evals": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,7 @@
+id: ambiguous-fund-name-asks-minimal-identifier
+scenario: Användaren skriver bara ett fondnamn som matchar flera andelsklasser och
+  ber om ett ersättningsförslag.
+expected:
+- Assistenten försöker verifiera fonden men väljer inte godtyckligt andelsklass.
+- Om flera rimliga träffar återstår ber den endast om ISIN eller exakt andelsklass.
+- Fondspecifika slutsatser väntar tills identiteten är tillräckligt säker.

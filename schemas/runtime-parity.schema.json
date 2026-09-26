@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Runtime Compatibility Report",
+  "type": "object",
+  "required": ["schema_version", "reference", "runtimes", "requirements"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 2},
+    "reference": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"const": "canonical_contract"},
+        "description": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "runtimes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/runtimeSummary"}
+    },
+    "requirements": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/requirement"},
+      "minItems": 1
+    },
+    "notes": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "state": {
+      "enum": ["equivalent", "reduced", "missing", "not_applicable"]
+    },
+    "level": {
+      "enum": ["full", "high", "moderate", "low", "not_viable"]
+    },
+    "runtimeSummary": {
+      "type": "object",
+      "required": ["level", "release_recommendation"],
+      "properties": {
+        "level": {"$ref": "#/$defs/level"},
+        "weighted_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "release_recommendation": {
+          "enum": ["publish", "publish_with_warning", "do_not_publish"]
+        },
+        "notes": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "runtimeState": {
+      "type": "object",
+      "required": ["state"],
+      "properties": {
+        "state": {"$ref": "#/$defs/state"},
+        "reason": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "requirement": {
+      "type": "object",
+      "required": ["category", "id", "title", "criticality", "runtime_states"],
+      "properties": {
+        "category": {
+          "enum": ["behavior", "capability", "artifact", "workspace_state", "tool"]
+        },
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "criticality": {
+          "enum": ["critical", "important", "optional"]
+        },
+        "runtime_states": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/runtimeState"}
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

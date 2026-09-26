@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/portfolio.schema.json",
+  "title": "Portfolio",
+  "type": "object",
+  "required": ["portfolio_id", "holdings"],
+  "properties": {
+    "portfolio_id": {"type": "string", "minLength": 1},
+    "as_of_date": {"type": ["string", "null"], "format": "date"},
+    "holdings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/holding"}
+    },
+    "cash_weight_pct": {"type": "number", "minimum": 0, "maximum": 100, "default": 0},
+    "profile": {"$ref": "#/$defs/profile"},
+    "target_allocation": {"$ref": "#/$defs/targetAllocation"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "holding": {
+      "type": "object",
+      "required": ["fund_id", "weight_pct"],
+      "properties": {
+        "fund_id": {"type": "string", "minLength": 1},
+        "weight_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "market_value": {"type": ["number", "null"], "minimum": 0},
+        "currency": {"type": ["string", "null"]},
+        "user_label": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "profile": {
+      "type": ["object", "null"],
+      "properties": {
+        "risk_level": {"type": ["string", "null"]},
+        "investment_horizon_years": {"type": ["number", "null"], "minimum": 0},
+        "liquidity_need": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "allocationEntry": {
+      "type": "object",
+      "required": ["key", "weight_pct"],
+      "properties": {
+        "key": {"type": "string", "minLength": 1},
+        "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "targetAllocation": {
+      "type": ["object", "null"],
+      "properties": {
+        "strategic_asset_allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "strategic_geographic_allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "tactical_asset_allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "tactical_geographic_allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "effective_asset_allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "effective_geographic_allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "derived_at": {"type": ["string", "null"], "format": "date-time"},
+        "assumptions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  }
+}

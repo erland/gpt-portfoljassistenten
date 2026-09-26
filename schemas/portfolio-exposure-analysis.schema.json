@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/portfolio-exposure-analysis.schema.json",
+  "title": "PortfolioExposureAnalysis",
+  "type": "object",
+  "required": ["portfolio_id", "asset_exposure", "geographic_exposure"],
+  "properties": {
+    "portfolio_id": {"type": "string", "minLength": 1},
+    "derived_at": {"type": ["string", "null"], "format": "date-time"},
+    "asset_exposure": {"$ref": "#/$defs/dimensionAnalysis"},
+    "geographic_exposure": {"$ref": "#/$defs/dimensionAnalysis"},
+    "overlaps": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/overlap"}
+    },
+    "target_comparison": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/targetDelta"}
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "allocationEntry": {
+      "type": "object",
+      "required": ["key", "weight_pct"],
+      "properties": {
+        "key": {"type": "string", "minLength": 1},
+        "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "contribution": {
+      "type": "object",
+      "required": ["fund_id", "key", "weight_pct"],
+      "properties": {
+        "fund_id": {"type": "string", "minLength": 1},
+        "key": {"type": "string", "minLength": 1},
+        "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "dimensionAnalysis": {
+      "type": "object",
+      "required": ["known_pct", "unknown_pct", "coverage_pct", "allocation", "contributions"],
+      "properties": {
+        "known_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "unknown_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "coverage_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "allocation": {"type": "array", "items": {"$ref": "#/$defs/allocationEntry"}},
+        "contributions": {"type": "array", "items": {"$ref": "#/$defs/contribution"}}
+      },
+      "additionalProperties": false
+    },
+    "overlap": {
+      "type": "object",
+      "required": ["dimension", "key", "total_weight_pct", "fund_count"],
+      "properties": {
+        "dimension": {"enum": ["asset", "geography"]},
+        "key": {"type": "string", "minLength": 1},
+        "total_weight_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "fund_count": {"type": "integer", "minimum": 2},
+        "fund_ids": {"type": "array", "items": {"type": "string"}, "minItems": 2}
+      },
+      "additionalProperties": false
+    },
+    "targetDelta": {
+      "type": "object",
+      "required": ["dimension", "key", "actual_pct", "target_pct", "delta_pp"],
+      "properties": {
+        "dimension": {"enum": ["asset", "geography"]},
+        "key": {"type": "string", "minLength": 1},
+        "actual_pct": {"type": "number"},
+        "target_pct": {"type": "number"},
+        "delta_pp": {"type": "number"},
+        "target_type": {"enum": ["strategic", "tactical", "effective"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

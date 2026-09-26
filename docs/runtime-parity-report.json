@@ -1,0 +1,435 @@
+{
+  "schema_version": 2,
+  "reference": {
+    "type": "canonical_contract",
+    "description": "Jämförelse av aktiverade runtimes mot Portföljassistentens canonical instruktion och kontrakt."
+  },
+  "runtimes": {
+    "chatgpt_chat": {
+      "level": "full",
+      "weighted_score": 98.9,
+      "release_recommendation": "publish"
+    },
+    "chatgpt_custom": {
+      "level": "full",
+      "weighted_score": 98.9,
+      "release_recommendation": "publish"
+    },
+    "claude_project": {
+      "level": "full",
+      "weighted_score": 98.9,
+      "release_recommendation": "publish",
+      "notes": [
+        "Webb- och filfunktioner beror på aktuell Claude Projects-konfiguration; detta är dokumenterat i runtime-paketet."
+      ]
+    }
+  },
+  "requirements": [
+    {
+      "category": "behavior",
+      "id": "scenario_existing",
+      "title": "Analysera befintlig portfölj",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "scenario_new",
+      "title": "Skapa ny portfölj",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "scenario_find",
+      "title": "Hitta fond",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "scenario_replace",
+      "title": "Ersätt fond",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "risk_horizon",
+      "title": "Risk och placeringshorisont",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "strategic_allocation",
+      "title": "Strategisk allokering",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "tactical_allocation",
+      "title": "Taktisk allokering",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "swedbank_verification",
+      "title": "Verifiera Swedbank ISK",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "minimal_change",
+      "title": "Minsta rimliga förändring",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "guided_workflow",
+      "title": "Guided workflow",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "gates",
+      "title": "Gates före konkreta förslag",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "terminal_behavior",
+      "title": "Terminal behavior",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "error_recovery",
+      "title": "Felåterhämtning",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "source_evidence",
+      "title": "Kunskapsstöd: source-evidence-rules.md",
+      "criticality": "important",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "look_through",
+      "title": "Kunskapsstöd: look-through-portfolio-analysis.md",
+      "criticality": "important",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "behavior",
+      "id": "strategy_interpretation",
+      "title": "Kunskapsstöd: investment-strategy-interpretation.md",
+      "criticality": "important",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "capability",
+      "id": "web",
+      "title": "Aktuell webbresearch",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent",
+          "reason": "Equivalent när webbsökning är aktiverad i aktuell Claude-miljö; runtime-README dokumenterar beroendet."
+        }
+      }
+    },
+    {
+      "category": "capability",
+      "id": "structured_data",
+      "title": "Strukturerad fond- och portföljdata",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "capability",
+      "id": "filesystem_read",
+      "title": "Läsning av uppladdade filer/dokument",
+      "criticality": "critical",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "capability",
+      "id": "code_execution",
+      "title": "Kodexekvering för exakt matematik",
+      "criticality": "optional",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "reduced",
+          "reason": "Rekommenderad för exakt matematik men exekveringsmotor är host-/kontoberoende och ingår inte i paketet."
+        },
+        "chatgpt_custom": {
+          "state": "reduced",
+          "reason": "Rekommenderad för exakt matematik men exekveringsmotor är host-/kontoberoende och ingår inte i paketet."
+        },
+        "claude_project": {
+          "state": "reduced",
+          "reason": "Rekommenderad för exakt matematik men exekveringsmotor är host-/kontoberoende och ingår inte i paketet."
+        }
+      }
+    },
+    {
+      "category": "artifact",
+      "id": "portfolio_analysis",
+      "title": "Portfölj-/fondanalys som Markdown-artefakt",
+      "criticality": "optional",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "reduced",
+          "reason": "Analysen kan alltid levereras som Markdown; nedladdningsbar fil beror på hostens fil-/artifact-stöd."
+        },
+        "chatgpt_custom": {
+          "state": "reduced",
+          "reason": "Analysen kan alltid levereras som Markdown; nedladdningsbar fil beror på hostens fil-/artifact-stöd."
+        },
+        "claude_project": {
+          "state": "reduced",
+          "reason": "Analysen kan alltid levereras som Markdown; nedladdningsbar fil beror på hostens fil-/artifact-stöd."
+        }
+      }
+    },
+    {
+      "category": "workspace_state",
+      "id": "conversation_state",
+      "title": "Ephemeral konversationsstate med återanvändning mellan turer",
+      "criticality": "important",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "equivalent"
+        },
+        "chatgpt_custom": {
+          "state": "equivalent"
+        },
+        "claude_project": {
+          "state": "equivalent"
+        }
+      }
+    },
+    {
+      "category": "tool",
+      "id": "declared_tools",
+      "title": "Obligatoriska deklarerade runtime-tools",
+      "criticality": "optional",
+      "runtime_states": {
+        "chatgpt_chat": {
+          "state": "not_applicable",
+          "reason": "Projektet deklarerar inga obligatoriska runtime-tools."
+        },
+        "chatgpt_custom": {
+          "state": "not_applicable",
+          "reason": "Projektet deklarerar inga obligatoriska runtime-tools."
+        },
+        "claude_project": {
+          "state": "not_applicable",
+          "reason": "Projektet deklarerar inga obligatoriska runtime-tools."
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Parity mäts mot canonical kontrakt, inte mot någon referensruntime.",
+    "Reducerad optional funktion blockerar inte release.",
+    "Externa host-/kontoegenskaper kan behöva aktiveras även när runtime-paketet bevarar kravet."
+  ]
+}

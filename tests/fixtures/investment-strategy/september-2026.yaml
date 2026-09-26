@@ -1,0 +1,122 @@
+strategy_id: swedbank-2026-09
+title: Guldkantad tillvaro
+provider_id: swedbank
+strategy_date: 2026-09-01
+signals:
+  - dimension: asset_class
+    key: equity
+    stance: overweight
+    strength: clear
+    relative_to: strategic_normal_weight
+    source_pages: [3, 4, 6]
+  - dimension: asset_class
+    key: rates
+    stance: underweight
+    strength: clear
+    relative_to: strategic_normal_weight
+    source_pages: [4, 8, 9]
+  - dimension: asset_class
+    key: credit
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [4, 10, 11]
+  - dimension: equity_region
+    key: sweden
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [12, 13]
+  - dimension: equity_region
+    key: europe
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [12, 14]
+  - dimension: equity_region
+    key: usa
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [12, 15]
+  - dimension: equity_region
+    key: japan
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [12, 16]
+  - dimension: equity_region
+    key: emerging_markets
+    stance: neutral
+    strength: normal
+    relative_to: strategic_normal_weight
+    source_pages: [12, 17]
+  - dimension: rates_segment
+    key: money_market_short
+    parent_key: rates
+    stance: prefer
+    strength: clear
+    relative_to: sibling_segments
+    source_pages: [4, 8, 9]
+  - dimension: rates_segment
+    key: bonds_long
+    parent_key: rates
+    stance: avoid
+    strength: clear
+    relative_to: sibling_segments
+    source_pages: [8, 9]
+  - dimension: credit_segment
+    key: high_yield
+    parent_key: credit
+    stance: overweight
+    strength: normal
+    relative_to: sibling_segments
+    source_pages: [4, 10, 11]
+  - dimension: credit_segment
+    key: investment_grade
+    parent_key: credit
+    stance: underweight
+    strength: normal
+    relative_to: sibling_segments
+    source_pages: [4, 11]
+product_suggestions:
+  - category: sweden_equity
+    fund_name: Swedbank Robur Sverigefond A
+    source_pages: [13, 21]
+    role: product_suggestion
+  - category: usa_equity
+    fund_name: Swedbank Robur Access USA A
+    source_pages: [15, 21]
+    role: product_suggestion
+  - category: rates_short
+    fund_name: Swedbank Robur Räntefond Kort Plus A
+    source_pages: [9, 21]
+    role: product_suggestion
+  - category: credit_high_yield
+    fund_name: Swedbank Robur Corporate Bond Nordic HY A
+    source_pages: [11, 21]
+    role: product_suggestion
+business_ideas:
+  - name: Svenska småbolag
+    purpose: satellite
+    source_pages: [20]
+    product_suggestions:
+      - Swedbank Robur Småbolagsfond Sverige A
+  - name: Energiomställning
+    purpose: satellite
+    source_pages: [19]
+    product_suggestions:
+      - Swedbank Robur New Energy
+  - name: Guldbolag
+    purpose: satellite
+    source_pages: [19]
+    product_suggestions:
+      - BGF World Gold A2
+source:
+  document_title: Guldkantad tillvaro – Investeringsstrategin September 2026
+  publisher: Swedbank
+  document_date: 2026-09-01
+  file_name: swedbanks_investeringsstrategi-september_2026-guldkantad_tillvaro.pdf
+notes:
+  - Neutral regionallokering means strategic normal weights, not equal weights.
+  - Product and business suggestions are kept separate from allocation signals.

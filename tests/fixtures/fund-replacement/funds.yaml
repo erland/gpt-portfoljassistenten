@@ -1,0 +1,66 @@
+funds:
+  - fund_id: sweden-active-expensive
+    name: Sverige Aktiv Dyr Demo
+    fund_type: equity
+    management_style: active
+    platform_availability: [{provider_id: swedbank, platform_id: fundlist, account_types: [ISK], availability_status: verified}]
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 100}]
+    risk: {score: 4, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 1.30}]
+  - fund_id: sweden-index-cheap
+    name: Sverige Index Billig Demo
+    fund_type: equity
+    management_style: index
+    platform_availability: [{provider_id: swedbank, platform_id: fundlist, account_types: [ISK], availability_status: verified}]
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 100}]
+    risk: {score: 4, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.20}]
+  - fund_id: sweden-nordic-drift
+    name: Sverige Norden Billig Demo
+    fund_type: equity
+    management_style: index
+    platform_availability: [{provider_id: swedbank, platform_id: fundlist, account_types: [ISK], availability_status: verified}]
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 70}, {key: europe, weight_pct: 30}]
+    risk: {score: 4, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.10}]
+  - fund_id: usa-index
+    name: USA Index Demo
+    fund_type: equity
+    management_style: index
+    platform_availability: [{provider_id: swedbank, platform_id: fundlist, account_types: [ISK], availability_status: verified}]
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: usa, weight_pct: 100}]
+    risk: {score: 4, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.15}]
+  - fund_id: mixed-original
+    name: Blandad Funktion Demo
+    fund_type: mixed
+    management_style: active
+    platform_availability: [{provider_id: swedbank, platform_id: fundlist, account_types: [ISK], availability_status: verified}]
+    exposures:
+      - as_of_date: '2026-08-31'
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 50}, {key: bonds_long, weight_pct: 50}]
+        geographic_allocation: [{key: sweden, weight_pct: 50}, {key: usa, weight_pct: 20}, {key: europe, weight_pct: 30}]
+    risk: {score: 3, scale_min: 1, scale_max: 7}
+    fees: [{fee_type: ongoing, value_pct: 0.80}]

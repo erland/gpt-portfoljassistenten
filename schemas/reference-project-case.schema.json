@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "source_type",
+    "characteristics",
+    "expected"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "known_reference_project",
+        "synthetic_reference"
+      ]
+    },
+    "characteristics": {
+      "type": "object"
+    },
+    "expected": {
+      "type": "object",
+      "required": [
+        "profile",
+        "primary_runtime",
+        "custom_gpt_role"
+      ],
+      "properties": {
+        "profile": {
+          "enum": [
+            "simple",
+            "standard",
+            "zip_first_advanced",
+            "workflow_research_heavy"
+          ]
+        },
+        "primary_runtime": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "custom_gpt_role": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+portfolio_id: balanced
+holdings:
+  - {fund_id: equity-pure, weight_pct: 60}
+  - {fund_id: bond-pure, weight_pct: 40}

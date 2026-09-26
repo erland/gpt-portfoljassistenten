@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/portfoljassistenten/investor-profile.schema.json",
+  "title": "Investor profile",
+  "type": "object",
+  "required": ["risk_profile", "horizon"],
+  "properties": {
+    "risk_profile": {
+      "type": "string",
+      "enum": ["cautious", "balanced", "high", "very_high"]
+    },
+    "horizon": {
+      "type": "object",
+      "required": ["band"],
+      "properties": {
+        "years": {"type": ["number", "null"], "minimum": 0},
+        "band": {"type": "string", "enum": ["short", "medium", "long", "very_long"]}
+      },
+      "additionalProperties": false
+    },
+    "liquidity_need": {
+      "type": "string",
+      "enum": ["none_known", "possible", "known_near_term", "unknown"]
+    },
+    "explicit_equity_target_pct": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "home_bias": {
+      "type": "object",
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "region": {"type": ["string", "null"]},
+        "target_pct_of_equity": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      },
+      "additionalProperties": false
+    },
+    "confirmation_status": {
+      "type": "string",
+      "enum": ["confirmed", "needs_confirmation"]
+    },
+    "mismatch_flags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

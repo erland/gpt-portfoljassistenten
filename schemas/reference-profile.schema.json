@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GPT Reference Profile",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "description",
+    "runtime_selection",
+    "custom_gpt",
+    "knowledge",
+    "scripts",
+    "schemas",
+    "templates",
+    "tests",
+    "evals",
+    "ci"
+  ],
+  "properties": {
+    "id": {
+      "enum": [
+        "simple",
+        "standard",
+        "zip_first_advanced",
+        "workflow_research_heavy"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "custom_gpt": {
+      "type": "object"
+    },
+    "knowledge": {
+      "type": "object"
+    },
+    "scripts": {
+      "type": "string"
+    },
+    "schemas": {
+      "type": "string"
+    },
+    "templates": {
+      "type": "string"
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evals": {
+      "type": "string"
+    },
+    "ci": {
+      "type": "string"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "runtime_robustness": {
+      "type": "object",
+      "properties": {
+        "core_contract": {
+          "enum": [
+            "required",
+            "recommended",
+            "optional"
+          ]
+        },
+        "critical_behavior_in_canonical_instruction": {
+          "type": "boolean"
+        },
+        "knowledge_required_for_core_behavior": {
+          "type": "boolean"
+        },
+        "max_required_file_hops": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "runtime_selection": {
+      "type": "object",
+      "required": [
+        "strategy",
+        "infer_from_canonical_contracts",
+        "ask_user_only_for_business_constraints",
+        "allow_multiple_default_targets"
+      ],
+      "properties": {
+        "strategy": {
+          "const": "peer_candidates"
+        },
+        "infer_from_canonical_contracts": {
+          "type": "boolean"
+        },
+        "ask_user_only_for_business_constraints": {
+          "type": "boolean"
+        },
+        "allow_multiple_default_targets": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Existing Project Migration Result",
+  "type": "object",
+  "required": [
+    "target_runtime",
+    "status",
+    "compatibility",
+    "applied",
+    "changed_areas",
+    "warnings",
+    "required_actions",
+    "next_action",
+    "technical_report"
+  ],
+  "properties": {
+    "target_runtime": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": ["ready_to_migrate", "completed", "needs_review", "blocked"]
+    },
+    "compatibility": {
+      "enum": ["ready", "reduced", "blocked"]
+    },
+    "applied": {"type": "boolean"},
+    "changed_areas": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "required_actions": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "next_action": {"type": "string", "minLength": 1},
+    "technical_report": {"type": "object"}
+  },
+  "additionalProperties": false
+}

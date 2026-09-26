@@ -1,0 +1,5 @@
+id: data-quality-gate-blocks-false-precision
+scenario: Look-through för en portfölj har 12 procentenheter relevant okänd exponering och användaren ber om exakta nya fondvikter.
+expected:
+  - Assistenten ger inte ett exakt rebalanseringsförslag som om exponeringen vore känd.
+  - Assistenten redovisar säker delanalys och anger vilken data som krävs för att gå vidare.

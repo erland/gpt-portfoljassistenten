@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GPT Knowledge Architecture",
+  "type": "object",
+  "required": [
+    "canonical_root",
+    "chat",
+    "custom_gpt"
+  ],
+  "properties": {
+    "canonical_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chat": {
+      "type": "object",
+      "required": [
+        "include"
+      ],
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "full_canonical_allowed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "custom_gpt": {
+      "type": "object",
+      "required": [
+        "strategy"
+      ],
+      "properties": {
+        "strategy": {
+          "enum": [
+            "identical",
+            "consolidate",
+            "prioritize",
+            "hybrid"
+          ]
+        },
+        "max_files": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "priority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allow_reduced_functionality": {
+          "type": "boolean"
+        }
+      }
+    },
+    "resource_metadata": {
+      "type": "object",
+      "properties": {
+        "supported": {
+          "type": "boolean"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml jsonschema pytest
+      - name: Lint
+        run: python scripts/lint_gpt_project.py --project-root .
+      - name: Model robustness
+        run: python scripts/validate_model_robustness.py --project-root .
+      - name: Test
+        run: python -m pytest -q -p no:cacheprovider
+      - name: Project hygiene
+        run: python scripts/project_hygiene.py --project-root . --mode final
+      - name: Build distributions
+        run: python scripts/build_distributions.py --project-root . --version 0.0.0-ci
+      - name: Validate distributions
+        run: python scripts/validate_distributions.py --project-root .
+      - name: Validate Chat runtime
+        run: python scripts/validate_chat_runtime.py --build-dir build/chat
+      - name: Validate Custom GPT runtime
+        run: python scripts/validate_custom_gpt_runtime.py --build-dir build/custom-gpt
+      - name: Validate Claude Projects runtime
+        run: python scripts/validate_claude_runtime.py --build-dir build/claude
+      - name: Validate runtime parity
+        run: python scripts/runtime_parity.py --project-root . --check
+      - name: Release readiness
+        run: python scripts/release_readiness.py --project-root . --version 0.0.0-ci --check

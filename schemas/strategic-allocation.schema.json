@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/portfoljassistenten/strategic-allocation.schema.json",
+  "title": "Strategic allocation",
+  "type": "object",
+  "required": ["profile_id", "asset_allocation", "equity_region_baseline"],
+  "properties": {
+    "profile_id": {"type": "string", "enum": ["cautious", "balanced", "high", "very_high", "user_defined"]},
+    "asset_allocation": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["key", "weight_pct"],
+        "properties": {
+          "key": {"type": "string", "enum": ["equity", "rates", "credit", "cash", "other"]},
+          "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+        },
+        "additionalProperties": false
+      }
+    },
+    "equity_region_baseline": {
+      "type": "object",
+      "required": ["method"],
+      "properties": {
+        "method": {"type": "string", "enum": ["global_market_cap", "user_defined", "global_market_cap_with_home_bias"]},
+        "as_of_date": {"type": ["string", "null"], "format": "date"},
+        "source_required": {"type": "boolean"},
+        "weights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["key", "weight_pct"],
+            "properties": {
+              "key": {"type": "string"},
+              "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_note": {"type": "string"}
+  },
+  "additionalProperties": false
+}

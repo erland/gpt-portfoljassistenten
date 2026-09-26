@@ -1,0 +1,65 @@
+cases:
+  - id: current-swedbank-availability
+    claim_type: platform_availability
+    status: verified
+    subject_id: demo-fund-a
+    evidence:
+      - source_id: swedbank-fund-list-current
+        source_type: platform
+        publisher: Swedbank
+        source_role: primary
+        age_days: 0
+    expected_primary_candidate: true
+
+  - id: third-party-only-availability
+    claim_type: platform_availability
+    status: supported
+    subject_id: demo-fund-b
+    evidence:
+      - source_id: third-party-catalog
+        source_type: third_party
+        publisher: Example Data Vendor
+        source_role: lead_only
+        age_days: 1
+    expected_primary_candidate: false
+
+  - id: stale-allocation
+    claim_type: geographic_allocation
+    status: stale
+    subject_id: demo-fund-c
+    evidence:
+      - source_id: fund-company-old-report
+        source_type: monthly_report
+        publisher: Example Fund Company
+        source_role: primary
+        age_days: 210
+    expected_exact_lookthrough: false
+
+  - id: conflicting-fee
+    claim_type: fee
+    status: conflicted
+    subject_id: demo-fund-d
+    evidence:
+      - source_id: kid-current
+        source_type: factsheet
+        publisher: Example Fund Company
+        source_role: primary
+        age_days: 20
+      - source_id: platform-old
+        source_type: platform
+        publisher: Example Platform
+        source_role: conflicting
+        age_days: 120
+    expected_primary_candidate: false
+
+  - id: current-official-allocation
+    claim_type: asset_allocation
+    status: verified
+    subject_id: demo-mixed-fund
+    evidence:
+      - source_id: monthly-report-current
+        source_type: monthly_report
+        publisher: Example Fund Company
+        source_role: primary
+        age_days: 32
+    expected_exact_lookthrough: true

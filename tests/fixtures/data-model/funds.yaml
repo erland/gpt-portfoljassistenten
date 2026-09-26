@@ -1,0 +1,98 @@
+funds:
+  - fund_id: global-equity-demo
+    name: Global Equity Demo
+    fund_type: equity
+    currency: SEK
+    platform_availability:
+      - provider_id: swedbank
+        platform_id: swedbank_fund_platform
+        account_types: [ISK]
+        availability_status: verified
+        verified_at: 2026-09-26T12:00:00+02:00
+        source_id: source-platform-1
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation:
+          - {key: equity, weight_pct: 100}
+        geographic_allocation:
+          - {key: usa, weight_pct: 65}
+          - {key: europe_ex_sweden, weight_pct: 15}
+          - {key: sweden, weight_pct: 2}
+          - {key: japan, weight_pct: 6}
+          - {key: emerging_markets, weight_pct: 10}
+          - {key: other, weight_pct: 2}
+        source_id: source-fund-1
+    sources:
+      - {source_id: source-platform-1, publisher: Demo Bank, source_type: platform, retrieved_at: 2026-09-26T12:00:00+02:00}
+      - {source_id: source-fund-1, publisher: Demo Fund Co, source_type: monthly_report, retrieved_at: 2026-09-26T12:00:00+02:00}
+
+  - fund_id: sweden-equity-demo
+    name: Sweden Equity Demo
+    fund_type: equity
+    platform_availability:
+      - provider_id: future_bank
+        platform_id: future_bank_funds
+        account_types: [ISK]
+        availability_status: verified
+        verified_at: 2026-09-26T12:00:00+02:00
+        source_id: source-platform-2
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: full
+        coverage_pct: 100
+        asset_allocation: [{key: equity, weight_pct: 100}]
+        geographic_allocation: [{key: sweden, weight_pct: 100}]
+        source_id: source-fund-2
+    sources:
+      - {source_id: source-platform-2, publisher: Future Bank, source_type: platform, retrieved_at: 2026-09-26T12:00:00+02:00}
+      - {source_id: source-fund-2, publisher: Demo Fund Co, source_type: factsheet, retrieved_at: 2026-09-26T12:00:00+02:00}
+
+  - fund_id: bond-demo
+    name: Government Bond Demo
+    fund_type: fixed_income
+    platform_availability: []
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: direct
+        coverage_pct: 100
+        asset_allocation: [{key: government_bonds, weight_pct: 100}]
+        source_id: source-fund-3
+    sources:
+      - {source_id: source-fund-3, publisher: Demo Fund Co, source_type: factsheet, retrieved_at: 2026-09-26T12:00:00+02:00}
+
+  - fund_id: high-yield-demo
+    name: High Yield Demo
+    fund_type: credit
+    platform_availability: []
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: direct
+        coverage_pct: 100
+        asset_allocation: [{key: high_yield_credit, weight_pct: 100}]
+        source_id: source-fund-4
+    sources:
+      - {source_id: source-fund-4, publisher: Demo Fund Co, source_type: monthly_report, retrieved_at: 2026-09-26T12:00:00+02:00}
+
+  - fund_id: mixed-demo
+    name: Mixed Allocation Demo
+    fund_type: mixed
+    platform_availability: []
+    exposures:
+      - as_of_date: 2026-08-31
+        look_through_level: partial
+        coverage_pct: 92
+        asset_allocation:
+          - {key: equity, weight_pct: 55}
+          - {key: government_bonds, weight_pct: 20}
+          - {key: investment_grade_credit, weight_pct: 12}
+          - {key: cash, weight_pct: 5}
+        geographic_allocation:
+          - {key: usa, weight_pct: 32}
+          - {key: europe_ex_sweden, weight_pct: 15}
+          - {key: sweden, weight_pct: 5}
+          - {key: japan, weight_pct: 3}
+        source_id: source-fund-5
+    sources:
+      - {source_id: source-fund-5, publisher: Demo Fund Co, source_type: monthly_report, retrieved_at: 2026-09-26T12:00:00+02:00}

@@ -1,0 +1,321 @@
+schema_version: 1
+project:
+  id: portfoljassistenten
+  name: Portföljassistenten
+  description: Analys- och beslutsstöd för fondportföljer med Swedbank ISK som första
+    provider.
+  profile: workflow_research_heavy
+  versioning: release_tag
+analysis:
+  runtime:
+    strategy: peer_candidates
+    candidates:
+    - runtime_id: chatgpt_chat
+      suitability: high
+      activate_by_default: true
+      reason: Stark matchning för uppladdade dokument, webbresearch och interaktiv
+        portföljdialog.
+    - runtime_id: chatgpt_custom
+      suitability: high
+      activate_by_default: true
+      reason: Lämplig för återanvändbar fond- och portföljassistent med webbfunktioner.
+    - runtime_id: claude_project
+      suitability: high
+      activate_by_default: true
+      reason: Lämplig peer-runtime för dokumentanalys och research.
+    - runtime_id: opencode
+      suitability: low
+      activate_by_default: false
+      reason: Kodcentrerad workspace-runtime ger begränsat mervärde för v1:s slutanvändarflöden.
+    - runtime_id: openai_plugin
+      suitability: medium
+      activate_by_default: false
+      reason: Kan bli relevant senare för återanvändbara skills eller dataintegrationer
+        men behövs inte i v1.
+instructions:
+  canonical: assistant/instructions.md
+  core_contract:
+    enabled: true
+    required_markers:
+    - Risk och placeringshorisont
+    - Strategisk allokering
+    - Taktisk allokering
+    - Verifiera Swedbank ISK
+    - Minsta rimliga förändring
+    - Guided workflow
+    - Gates före konkreta förslag
+    - Terminal behavior
+    - Felåterhämtning
+    required_runtime_dependencies: []
+    max_required_file_hops: 1
+    knowledge_may_not_be_required_for_core_behavior: true
+model_robustness:
+  level: guided
+  separate_model_instructions: false
+  prefer_deterministic_validation: true
+  max_core_policy_hops: 1
+workflow:
+  mode: explicit_state_machine
+  policy: runtime/policies/workflow.md
+  operational_core:
+  - read_project_contract
+  - read_project_status
+  - select_one_state_or_bounded_goal
+  - load_only_relevant_policy
+  - execute_change
+  - validate_deterministically
+  - correct_before_completion_on_failure
+  - update_structured_status_after_pass
+  - rebuild_project_zip_when_required
+  - recommend_next_step_from_actual_state
+  states:
+    idea_analysis:
+      next:
+      - architecture
+    architecture:
+      next:
+      - planning
+    planning:
+      next:
+      - implementation
+    implementation:
+      next:
+      - validation
+    validation:
+      next:
+      - implementation
+      - packaging
+    packaging:
+      next:
+      - release
+    release:
+      next:
+      - maintenance
+    maintenance:
+      next:
+      - implementation
+      - validation
+    blocked:
+      next: []
+    paused:
+      next: []
+capabilities:
+  contract_version: 1
+  schema: schemas/capability-contract.schema.json
+  recommendation_mode: inferred_from_use_case
+  ask_user_only_when_business_choice_is_ambiguous: true
+  requirements:
+    web:
+      level: required
+      reason: Aktuell fondtillgänglighet, fondfakta och marknadsdata förändras över
+        tid.
+    filesystem:
+      read: required
+      write: optional
+    shell:
+      level: not_required
+    code_execution:
+      level: recommended
+      reason: Hjälper vid exakta portfölj- och exponeringberäkningar.
+    structured_data:
+      level: required
+      reason: Fond-, portfölj- och exponeringsdata behöver normaliseras och summeras.
+    persistent_state:
+      level: optional
+      reason: Kärnflöden kan normalt genomföras inom en konversation.
+    external_tools:
+      level: optional
+      preferred_protocols:
+      - mcp
+    image_generation:
+      level: not_required
+artifacts:
+  contract_version: 1
+  schema: schemas/artifact-contract.schema.json
+  outputs:
+    portfolio_analysis:
+      kind: document
+      format: markdown
+      requirement: optional
+      persistence: persistent
+      multiplicity: one
+      description: Nedladdningsbar portfölj- eller fondanalys när användaren begär
+        det.
+    project_package:
+      kind: package
+      format: zip
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+      filename_pattern: <project-id>-project.zip
+      description: Komplett utvecklingsprojekt.
+    runtime_package:
+      kind: distribution
+      format: zip
+      requirement: required
+      persistence: persistent
+      multiplicity: many
+      description: Runtime-specifika distributioner.
+    validation_report:
+      kind: report
+      format: structured
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+    parity_report:
+      kind: report
+      format: markdown
+      requirement: conditional
+      condition: multiple_runtimes
+      persistence: persistent
+      multiplicity: one
+    checksums:
+      kind: metadata
+      format: sha256
+      requirement: required
+      persistence: persistent
+      multiplicity: one
+  legacy_mapping:
+    project_zip: project_package
+    chat_zip: runtime_package
+    custom_gpt_zip: runtime_package
+    claude_zip: runtime_package
+    opencode_zip: runtime_package
+    plugin_zip: runtime_package
+    validation_report: validation_report
+    parity_report: parity_report
+    checksums: checksums
+workspace_state:
+  contract_version: 1
+  schema: schemas/workspace-state-contract.schema.json
+  workspace:
+    requirement: optional
+    persistence: ephemeral
+    portable: true
+    separate_from_assistant: true
+    description: Slutanvändarens portföljanalys kräver normalt inget långlivat workspace.
+  state:
+    requirement: optional
+    persistence: ephemeral
+    authority: conversation
+    conversation_fallback: true
+    description: Kärnflödet kan normalt hålla analysstatus i den aktuella konversationen.
+  runtime_preferences:
+    chat: conversation_or_file
+    agent: runtime_managed
+tools:
+  contract_version: 1
+  schema: schemas/tool-contract.schema.json
+  tools: []
+knowledge_architecture:
+  canonical_root: knowledge
+  custom_gpt:
+    priority:
+    - knowledge/portfolio-data-model.md
+    - knowledge/source-evidence-rules.md
+    - knowledge/investment-strategy-interpretation.md
+    - knowledge/strategic-allocation-and-risk-dialogue.md
+    - knowledge/tactical-adjustment-engine.md
+    - knowledge/existing-portfolio-analysis.md
+    - knowledge/new-portfolio-construction.md
+    - knowledge/fund-search-and-comparison.md
+    - knowledge/fund-replacement.md
+structure:
+  conversation_starters:
+    path: conversation-starters
+  runtime_policy:
+    path: runtime/policies
+  schemas:
+    path: schemas
+  templates:
+    path: templates
+runtime:
+  primary: none
+  chat_zip:
+    enabled: true
+    start_here_template: templates/START-HERE.chat.md.tpl
+  custom_gpt:
+    enabled: true
+    instruction:
+      mode: compressed
+      max_characters: 8000
+    knowledge:
+      max_files: 20
+      strategy: prioritize
+    builder:
+      runtime_contract: builder/runtime-contract.json
+    templates:
+      capabilities: templates/capabilities.md.tpl
+      readme: templates/README.custom-gpt.md.tpl
+      compatibility: templates/COMPATIBILITY.md.tpl
+  claude:
+    enabled: true
+    project:
+      instructions: project/instructions.md
+      knowledge: project/knowledge
+      runtime_contract: project/runtime-contract.json
+    templates:
+      readme: templates/README.claude.md.tpl
+  opencode:
+    enabled: false
+  plugin:
+    enabled: false
+runtime_parity:
+  registered_runtimes:
+  - chatgpt_chat
+  - chatgpt_custom
+  - claude_project
+build:
+  build_chat_zip: true
+  build_custom_gpt_zip: true
+  build_claude_zip: true
+  build_opencode_zip: false
+  build_plugin_zip: false
+build_system:
+  targets:
+  - project
+  - chat
+  - custom-gpt
+  - claude
+  runtime_targets:
+    chat:
+      runtime_id: chatgpt_chat
+      runtime_key: chat_zip
+      builder: chat
+      filename_pattern: <project-id>-chat-<version>.zip
+      artifact_type: chat_zip
+    custom-gpt:
+      runtime_id: chatgpt_custom
+      runtime_key: custom_gpt
+      builder: custom_gpt
+      filename_pattern: <project-id>-custom-gpt-<version>.zip
+      artifact_type: custom_gpt_zip
+    claude:
+      runtime_id: claude_project
+      runtime_key: claude
+      builder: claude
+      filename_pattern: <project-id>-claude-<version>.zip
+      artifact_type: claude_zip
+    opencode:
+      runtime_id: opencode
+      runtime_key: opencode
+      builder: opencode
+      filename_pattern: <project-id>-opencode-<version>.zip
+      artifact_type: opencode_zip
+    plugin:
+      runtime_id: openai_plugin
+      runtime_key: plugin
+      builder: plugin
+      filename_pattern: <project-id>-plugin-<version>.zip
+      artifact_type: plugin_zip
+testing:
+  manifest: tests/test-manifest.yaml
+  manifest_schema: schemas/test-manifest.schema.json
+  eval_case_schema: schemas/eval-case.schema.json
+ci:
+  enabled: true
+  workflow: .github/workflows/ci.yml
+release:
+  github:
+    enabled: true
+    workflow: .github/workflows/release.yml

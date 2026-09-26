@@ -1,0 +1,9 @@
+id: neutral-region-weight-preserves-baseline
+scenario: Investeringsstrategin anger neutralvikt i Sverige, Europa, USA, Japan och
+  Tillväxtmarknader.
+expected:
+- Assistenten tolkar neutral som strategisk normalvikt, inte 20 % per region.
+- Den strategiska regionbaslinjen lämnas oförändrad om inga andra aktiva regionsignaler
+  finns.
+- Eventuella exakta regionvikter måste komma från den daterade strategiska referensen,
+  inte från neutralbegreppet.

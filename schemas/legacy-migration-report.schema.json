@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Legacy Migration Report",
+  "type": "object",
+  "required": [
+    "migration",
+    "decisions",
+    "warnings",
+    "changes",
+    "opencode",
+    "plugin"
+  ],
+  "properties": {
+    "migration": {
+      "type": "object",
+      "required": [
+        "source_class",
+        "target_contract_version",
+        "status"
+      ],
+      "properties": {
+        "source_class": {
+          "enum": [
+            "L0",
+            "L1",
+            "L2",
+            "L3"
+          ]
+        },
+        "target_contract_version": {
+          "type": "integer",
+          "const": 1
+        },
+        "status": {
+          "enum": [
+            "manual_review",
+            "ready_with_manual_review",
+            "ready_with_warnings",
+            "ready",
+            "no_changes"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "area",
+          "action",
+          "confidence"
+        ],
+        "properties": {
+          "area": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": {
+            "enum": [
+              "safe_auto",
+              "auto_with_warning",
+              "manual_review",
+              "not_applicable"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "changes": {
+      "type": "object"
+    },
+    "apply": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "enum": [
+            "changed",
+            "no_changes",
+            "blocked"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "opencode": {
+      "type": "object",
+      "required": [
+        "status",
+        "reasons",
+        "can_enable_automatically"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ready",
+            "reduced",
+            "blocked"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "can_enable_automatically": {
+          "type": "boolean"
+        },
+        "required_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "plugin": {
+      "type": "object",
+      "required": [
+        "status",
+        "reasons",
+        "can_enable_automatically"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ready",
+            "reduced",
+            "blocked"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "can_enable_automatically": {
+          "type": "boolean"
+        },
+        "required_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

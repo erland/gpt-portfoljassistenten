@@ -1,0 +1,7 @@
+portfolio_id: mixed-replacement-demo
+provider_id: swedbank
+account_type: ISK
+holdings:
+  - {fund_id: mixed-original, weight_pct: 40}
+  - {fund_id: usa-index, weight_pct: 60}
+cash_weight_pct: 0

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "status",
+    "project_id",
+    "project_name",
+    "blockers",
+    "warnings"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "ready",
+        "ready_with_warnings",
+        "needs_correction",
+        "blocked",
+        "legacy_or_unknown"
+      ]
+    },
+    "project_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "project_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_completed_step": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "recommended_next_step": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ]
+    },
+    "recommended_next_title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hygiene": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "files_read_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

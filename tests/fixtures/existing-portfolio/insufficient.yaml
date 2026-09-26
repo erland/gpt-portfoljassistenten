@@ -1,0 +1,3 @@
+portfolio_id: insufficient
+holdings:
+  - {fund_id: mixed-partial, weight_pct: 100}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Chat ZIP Runtime Configuration",
+  "type": "object",
+  "required": [
+    "enabled",
+    "role",
+    "entrypoint",
+    "layout",
+    "include",
+    "exclude"
+  ],
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "role": {
+      "enum": [
+        "primary",
+        "secondary",
+        "peer_distribution"
+      ]
+    },
+    "entrypoint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "assistant": {
+          "type": "string"
+        },
+        "knowledge": {
+          "type": "string"
+        },
+        "schemas": {
+          "type": "string"
+        },
+        "scripts": {
+          "type": "string"
+        },
+        "templates": {
+          "type": "string"
+        },
+        "runtime": {
+          "type": "string"
+        }
+      }
+    },
+    "include": {
+      "type": "object",
+      "properties": {
+        "instructions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conversation_starters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "knowledge": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schemas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scripts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "templates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "exclude": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "checksums": {
+          "type": "boolean"
+        }
+      }
+    },
+    "deterministic_build": {
+      "type": "boolean"
+    }
+  }
+}

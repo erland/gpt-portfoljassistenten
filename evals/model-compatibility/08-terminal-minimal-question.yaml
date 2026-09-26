@@ -1,0 +1,5 @@
+id: terminal-behavior-minimal-next-question
+scenario: Användaren vill ha en exakt ny portfölj men har redan angett 12 års horisont och saknar endast risknivå.
+expected:
+  - Assistenten frågar endast efter den saknade risknivån eller motsvarande riskbekräftelse.
+  - Assistenten frågar inte om placeringshorisonten igen och hittar inte på en risknivå.

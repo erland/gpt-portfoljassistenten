@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfoljassistenten.local/schemas/new-portfolio-proposal.schema.json",
+  "title": "New portfolio proposal",
+  "type": "object",
+  "required": ["status", "profile", "targets", "holdings", "unresolved_slots", "actual_exposure", "warnings"],
+  "properties": {
+    "status": {
+      "enum": ["complete", "needs_profile_confirmation", "insufficient_verified_candidates", "insufficient_data", "invalid_target"]
+    },
+    "profile": {
+      "type": "object",
+      "required": ["complete"],
+      "properties": {
+        "complete": {"type": "boolean"},
+        "risk_profile": {"type": ["string", "null"]},
+        "horizon_years": {"type": ["number", "null"], "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "targets": {
+      "type": "object",
+      "required": ["top_level_assets", "equity_regions", "rates_segments", "credit_segments"],
+      "properties": {
+        "top_level_assets": {"$ref": "#/$defs/weightMap"},
+        "equity_regions": {"$ref": "#/$defs/weightMap"},
+        "rates_segments": {"$ref": "#/$defs/weightMap"},
+        "credit_segments": {"$ref": "#/$defs/weightMap"}
+      },
+      "additionalProperties": false
+    },
+    "holdings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fund_id", "role", "weight_pct", "availability_status"],
+        "properties": {
+          "fund_id": {"type": "string"},
+          "role": {"type": "string"},
+          "weight_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "availability_status": {"enum": ["verified", "unverified"]},
+          "selection_reason": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "unresolved_slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "weight_pct", "reason"],
+        "properties": {
+          "role": {"type": "string"},
+          "weight_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "reason": {"type": "string"},
+          "candidate_fund_ids": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "actual_exposure": {"type": ["object", "null"]},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "weightMap": {
+      "type": "object",
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}
+    }
+  },
+  "additionalProperties": true
+}

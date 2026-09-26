@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/portfoljassistenten/investment-strategy-signal.schema.json",
+  "title": "Investment strategy tactical signal model",
+  "type": "object",
+  "required": ["strategy_id", "provider_id", "strategy_date", "signals", "product_suggestions", "source"],
+  "properties": {
+    "strategy_id": {"type": "string", "minLength": 1},
+    "provider_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string"},
+    "strategy_date": {"type": "string", "format": "date"},
+    "tactical_horizon": {
+      "type": "object",
+      "properties": {
+        "min_months": {"type": "integer", "minimum": 0},
+        "max_months": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "signals": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/signal"}
+    },
+    "product_suggestions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/productSuggestion"}
+    },
+    "business_ideas": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/businessIdea"}
+    },
+    "source": {"$ref": "#/$defs/sourceRef"},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "stance": {
+      "type": "string",
+      "enum": ["strong_underweight", "underweight", "neutral", "overweight", "strong_overweight", "avoid", "prefer", "unknown"]
+    },
+    "signal": {
+      "type": "object",
+      "required": ["dimension", "key", "stance", "relative_to", "source_pages"],
+      "properties": {
+        "dimension": {
+          "type": "string",
+          "enum": ["asset_class", "equity_region", "rates_segment", "credit_segment", "credit_region", "theme"]
+        },
+        "key": {"type": "string", "minLength": 1},
+        "parent_key": {"type": ["string", "null"]},
+        "stance": {"$ref": "#/$defs/stance"},
+        "relative_to": {
+          "type": "string",
+          "enum": ["strategic_normal_weight", "sibling_segments", "category_baseline", "not_applicable"]
+        },
+        "strength": {"type": "string", "enum": ["normal", "clear", "unknown"]},
+        "rationale": {"type": "string"},
+        "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1},
+        "confidence": {"type": "string", "enum": ["high", "medium", "low"]}
+      },
+      "additionalProperties": false
+    },
+    "productSuggestion": {
+      "type": "object",
+      "required": ["category", "fund_name", "source_pages"],
+      "properties": {
+        "category": {"type": "string", "minLength": 1},
+        "fund_name": {"type": "string", "minLength": 1},
+        "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1},
+        "role": {"type": "string", "enum": ["product_suggestion", "business_idea_product"]}
+      },
+      "additionalProperties": false
+    },
+    "businessIdea": {
+      "type": "object",
+      "required": ["name", "purpose", "source_pages"],
+      "properties": {
+        "name": {"type": "string"},
+        "purpose": {"type": "string", "enum": ["satellite", "complement", "limited_replacement"]},
+        "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1},
+        "product_suggestions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "sourceRef": {
+      "type": "object",
+      "required": ["document_title", "publisher", "document_date"],
+      "properties": {
+        "document_title": {"type": "string"},
+        "publisher": {"type": "string"},
+        "document_date": {"type": "string", "format": "date"},
+        "file_name": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
